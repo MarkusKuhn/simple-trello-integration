@@ -4,7 +4,7 @@ import List from '../List/List';
 
 const Lists = ({ lists }) => (
   <div className='lists-container'>
-    {lists.map(list => <List list={list} />)}
+    {lists.map(list => <List list={list} key={list.id} />)}
   </div>
 )
 

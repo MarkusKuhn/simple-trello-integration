@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Lists from '../Lists/Lists';
+import CardForm from '../CardForm/CardForm';
 import PropTypes from 'prop-types';
 
 
@@ -8,8 +9,12 @@ class TrelloBoard extends Component {
     this.props.fetchLists()
   }
 
+  handleSubmit = (values) => {
+    this.props.postCreateCard(values)
+  }
+
   render() {
-    const { lists } = this.props;
+    const { lists, submitting } = this.props;
 
     return (
       <div className="board">
@@ -17,6 +22,7 @@ class TrelloBoard extends Component {
         <div className="lists">
           <h2>Lists</h2>
           <Lists lists={lists} />
+          <CardForm onSubmit={this.handleSubmit} submitting={submitting} />
         </div>
       </div>
     )
@@ -25,7 +31,9 @@ class TrelloBoard extends Component {
 
 TrelloBoard.propTypes = {
   lists: PropTypes.array,
-  fetchLists: PropTypes.func.isRequired
+  submitting: PropTypes.bool,
+  fetchLists: PropTypes.func.isRequired,
+  postCreateCard: PropTypes.func.isRequired
 };
 
 export default TrelloBoard;

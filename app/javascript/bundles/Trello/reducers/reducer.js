@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import lists from './lists/listsReducer.js';
+import { reducer as formReducer } from 'redux-form';
+import lists from './lists/listsReducer';
+import cards from './cards/cardReducer';
 
-const reducer = combineReducers({ lists });
+const reducer = combineReducers({ lists, form: formReducer });
 
 export default reducer;
