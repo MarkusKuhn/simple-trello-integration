@@ -5,12 +5,22 @@ export const getLists = () => ({
   payload: {},
 });
 
-export const getListsSuccess = ({ payload }) => ({
+export const getListsSuccess = lists => ({
   type: GET_LISTS_SUCCESS,
-  payload
+  lists
 })
 
 export const getListsFailure = () => ({
   type: GET_LISTS_FAILURE,
   payload: {}
 })
+
+export function fetchLists() {
+  return function(dispatch) {
+    dispatch(getLists());
+
+    return fetch('/api/lists')
+      .then(response => response.json(), error => console.log('An error occurred ', error))
+      .then(json => dispatch(getListsSuccess(json)))
+  }
+}
