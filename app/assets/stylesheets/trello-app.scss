@@ -1,0 +1,40 @@
+@import "./variables.scss";
+
+
+h1, h2 {
+  color: $white;
+  text-align: center;
+}
+
+body {
+  width: 100%;
+  background-color: $blue;
+}
+
+.board {
+  width: 100%;
+}
+
+.lists {
+  background-color: $aqua;
+  padding: 2rem;
+}
+
+.lists-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2rem 0 2rem;
+}
+
+.list-item {
+  background-color: $gray;
+  width: 33%;
+  border-radius: 10px;
+}
+
+.list-details {
+  background-color: $white;
+  margin: 1rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+}

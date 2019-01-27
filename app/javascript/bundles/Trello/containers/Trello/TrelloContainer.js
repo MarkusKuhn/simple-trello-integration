@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import TrelloBoard from '../../components/TrelloBoard/TrelloBoard';
-import * as actions from '../../actions/lists/listActions';
+import { fetchLists } from '../../actions/lists/listActions';
 
-const mapStateToProps = (state) => ({ lists: state.lists });
+const mapStateToProps = (state) => {
+  return { lists: state.lists.lists || [] }};
 
-export default connect(mapStateToProps, actions)(TrelloBoard);
+export default connect(mapStateToProps, { fetchLists })(TrelloBoard);
