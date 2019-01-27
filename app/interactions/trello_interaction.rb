@@ -1,28 +1,40 @@
 class TrelloInteraction
-  def self.retrieve_lists
-    process_get_request("https://api.trello.com/1/boards/#{board_id}/lists?key=#{api_key}&token=#{token}")
+  attr_accessor :status, :response
+
+  def retrieve_lists
+    process_get_request("https://api.trello.com/1/boards/#{board_id}/lists?key=#{api_key}&token=#{token}", TrelloListsSerializer)
   end
 
-  def self.process_get_request(url)
-    response = RestClient.get(url)
-    JSON.parse(response)
+  def process_get_request(url, serializer)
+    RestClient.get(url){ |response, request, result| handle_response(response, serializer) }
+  end
+
+  def handle_response(response, serializer)
+    case response.code
+    when 200
+      @status = 200
+      @response = serializer.serialize_response(response.body)
+    else
+      @status = response.code
+      @resposne = { error: response.body }
+    end
   end
 
   private
 
-  def self.trello_credentials
+  def trello_credentials
     SimpleTrelloIntegration::Application.credentials.trello
   end
 
-  def self.api_key
+  def api_key
     trello_credentials[:api_key]
   end
 
-  def self.token
+  def token
     trello_credentials[:token]
   end
 
-  def self.board_id
+  def board_id
     trello_credentials[:board_id]
   end
 end
