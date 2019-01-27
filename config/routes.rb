@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '', to: 'home#index'
+
+  namespace :api do
+    get :lists, to: 'lists#index'
+    post :cards, to: 'cards#create'
+    get :webhooks, to: 'webhooks#index'
+    post :webhooks, to: 'webhooks#receive'
+  end
 end
