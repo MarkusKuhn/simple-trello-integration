@@ -1,5 +1,5 @@
 class Api::CardsController < ApplicationController
-  skip_before_action :verify_authenticity_token 
+  skip_before_action :verify_authenticity_token
 
   def create
     interaction.create_new_card(card_params[:name])
