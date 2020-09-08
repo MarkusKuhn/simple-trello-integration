@@ -42,3 +42,5 @@ What the `webhooks:initialize` task does is, it makes a call to Trello's API to 
 
 1. The task took about 4 and a half hours to complete in total. My goal was to keep it under 4 hours, but unfortunately I lost time on set up and with spec creation, which took me much longer than expected.
 2. I would have looked to get automated tests on the frontend, using Jest or Jasmine, as well as spend more time on the styling of the application. I unfortunately didn't get that much done on that front.
+
+...
